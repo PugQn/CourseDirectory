@@ -4,7 +4,7 @@ This project was developed in response to an assignment provocation. The project
 was to be done in pairs, however, due to my partner's health issues, I made a solo
 attempt at the project. As such, only lecturer side functions are complete.
 
-I have ammended the project to remove server-side storage and retrival as the server
+I have amended the project to remove server-side storage and retrival as the server
 was provided by the university and I am no longer a student there. Only data 
 permanance is affected. The functionality of the site is still intact. All JSON
 has been removed.
