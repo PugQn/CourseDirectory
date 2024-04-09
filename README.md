@@ -1,4 +1,4 @@
-# Course Directory Project (INFO102, Victoria University Wellington)
+# Course Directory Project (INFO102, Victoria University Wellington 2023)
 
 This project was developed in response to an assignment provocation. The project
 was to be done in pairs, however, due to my partner's health issues, I made a solo
