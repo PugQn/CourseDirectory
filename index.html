@@ -1,0 +1,1613 @@
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <script src="https://unpkg.com/vue@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/brython@3/brython.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/brython@3/brython_stdlib.js"></script>
+    <script src="script.py"></script>
+    <link rel="icon" href="titleLogo.png">
+    <title>Course Directory</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+
+  <body onload="brython(1)">
+    <header>
+      <div class="vuwLogo">
+        <a href="https://www.wgtn.ac.nz/"><img src="vuwLogo.png" id="vuwLogo">
+        </a>
+      </div>
+      <div>
+        <h1>Course Directory</h1>
+        <h6>Whaiaronga Akoranga</h6>
+      </div>
+    </header>
+
+    <div id="app">
+
+      <nav v-if="loginStatus == 'True'">
+        <ul>
+          <li><a href="#" @click="navDirectory">Directory</a></li>
+          <li><a href="#" @click="navCourses">Courses</a></li>
+        </ul>
+        <button class='logOutBtn' @click="pop = 2">Log Out</button>
+      </nav>
+
+      <!---Week Overview Section--->
+      <div class="flexdiv">
+        <br><h2 style="text-align:center;">Week Overview</h2>
+        <div class="overNav">
+          <ul>
+            <li><a href="#" @click="trimester = 1">Trimester 1</a></li>
+            <li><a href="#" @click="trimester = 2">Trimester 2</a></li>
+            <li><a href="#" @click="trimester = 3">Trimester 3</a></li>
+          </ul>
+          <button class='logOutBtn' @click="pop = 2">Log Out</button>
+        </div>
+
+        <table class="overview" v-if="trimester == 1">
+          <tr>
+            <th><h2>T1</h2></th>
+            <th><h4>Monday</h4></th>
+            <th><h4>Tuesday</h4></th>
+            <th><h4>Wednesday</h4></th>
+            <th><h4>Thursday</h4></th>
+            <th><h4>Friday</h4></th>
+          </hd>
+          <tr>
+            <th><h4>9 am</h4></th>
+            <td class="overCell">{{overviewDict['1']['Mon']['9am']}}</td>
+            <td class="overCell">{{overviewDict['1']['Tue']['9am']}}</td>
+            <td class="overCell">{{overviewDict['1']['Wed']['9am']}}</td>
+            <td class="overCell">{{overviewDict['1']['Thu']['9am']}}</td>
+            <td class="overCell">{{overviewDict['1']['Fri']['9am']}}</td>
+          </tr>
+          <tr>
+            <th><h4>10 am</h4></th>
+            <td class="overCell">{{overviewDict['1']['Mon']['10am']}}</td>
+            <td class="overCell">{{overviewDict['1']['Tue']['10am']}}</td>
+            <td class="overCell">{{overviewDict['1']['Wed']['10am']}}</td>
+            <td class="overCell">{{overviewDict['1']['Thu']['10am']}}</td>
+            <td class="overCell">{{overviewDict['1']['Fri']['10am']}}</td>
+          </tr>
+          <tr>
+            <th><h4>11 am</h4></th>
+            <td class="overCell">{{overviewDict['1']['Mon']['11am']}}</td>
+            <td class="overCell">{{overviewDict['1']['Tue']['11am']}}</td>
+            <td class="overCell">{{overviewDict['1']['Wed']['11am']}}</td>
+            <td class="overCell">{{overviewDict['1']['Thu']['11am']}}</td>
+            <td class="overCell">{{overviewDict['1']['Fri']['11am']}}</td>
+          </tr>
+          <tr>
+            <th><h4>12 pm</h4></th>
+            <td class="overCell">{{overviewDict['1']['Mon']['12pm']}}</td>
+            <td class="overCell">{{overviewDict['1']['Tue']['12pm']}}</td>
+            <td class="overCell">{{overviewDict['1']['Wed']['12pm']}}</td>
+            <td class="overCell">{{overviewDict['1']['Thu']['12pm']}}</td>
+            <td class="overCell">{{overviewDict['1']['Fri']['12pm']}}</td>
+          </tr>
+          <tr>
+            <th><h4>1 pm</h4></th>
+            <td class="overCell">{{overviewDict['1']['Mon']['1pm']}}</td>
+            <td class="overCell">{{overviewDict['1']['Tue']['1pm']}}</td>
+            <td class="overCell">{{overviewDict['1']['Wed']['1pm']}}</td>
+            <td class="overCell">{{overviewDict['1']['Thu']['1pm']}}</td>
+            <td class="overCell">{{overviewDict['1']['Fri']['1pm']}}</td>
+          </tr>
+          <tr>
+            <th><h4>2 pm</h4></th>
+            <td class="overCell">{{overviewDict['1']['Mon']['2pm']}}</td>
+            <td class="overCell">{{overviewDict['1']['Tue']['2pm']}}</td>
+            <td class="overCell">{{overviewDict['1']['Wed']['2pm']}}</td>
+            <td class="overCell">{{overviewDict['1']['Thu']['2pm']}}</td>
+            <td class="overCell">{{overviewDict['1']['Fri']['2pm']}}</td>
+          </tr>
+          <tr>
+            <th><h4>3 pm</h4></th>
+            <td class="overCell">{{overviewDict['1']['Mon']['3pm']}}</td>
+            <td class="overCell">{{overviewDict['1']['Tue']['3pm']}}</td>
+            <td class="overCell">{{overviewDict['1']['Wed']['3pm']}}</td>
+            <td class="overCell">{{overviewDict['1']['Thu']['3pm']}}</td>
+            <td class="overCell">{{overviewDict['1']['Fri']['3pm']}}</td>
+          </tr>
+          <tr>
+            <th><h4>4 pm</h4></th>
+            <td class="overCell">{{overviewDict['1']['Mon']['4pm']}}</td>
+            <td class="overCell">{{overviewDict['1']['Tue']['4pm']}}</td>
+            <td class="overCell">{{overviewDict['1']['Wed']['4pm']}}</td>
+            <td class="overCell">{{overviewDict['1']['Thu']['4pm']}}</td>
+            <td class="overCell">{{overviewDict['1']['Fri']['4pm']}}</td>
+          </tr>
+        </table>
+
+        <table class="overview" v-if="trimester == 2">
+          <tr>
+            <th><h2>T2</h2></th>
+            <th><h4>Monday</h4></th>
+            <th><h4>Tuesday</h4></th>
+            <th><h4>Wednesday</h4></th>
+            <th><h4>Thursday</h4></th>
+            <th><h4>Friday</h4></th>
+          </hd>
+          <tr>
+            <th><h4>9 am</h4></th>
+            <td class="overCell">{{overviewDict['2']['Mon']['9am']}}</td>
+            <td class="overCell">{{overviewDict['2']['Tue']['9am']}}</td>
+            <td class="overCell">{{overviewDict['2']['Wed']['9am']}}</td>
+            <td class="overCell">{{overviewDict['2']['Thu']['9am']}}</td>
+            <td class="overCell">{{overviewDict['2']['Fri']['9am']}}</td>
+          </tr>
+          <tr>
+            <th><h4>10 am</h4></th>
+            <td class="overCell">{{overviewDict['2']['Mon']['10am']}}</td>
+            <td class="overCell">{{overviewDict['2']['Tue']['10am']}}</td>
+            <td class="overCell">{{overviewDict['2']['Wed']['10am']}}</td>
+            <td class="overCell">{{overviewDict['2']['Thu']['10am']}}</td>
+            <td class="overCell">{{overviewDict['2']['Fri']['10am']}}</td>
+          </tr>
+          <tr>
+            <th><h4>11 am</h4></th>
+            <td class="overCell">{{overviewDict['2']['Mon']['11am']}}</td>
+            <td class="overCell">{{overviewDict['2']['Tue']['11am']}}</td>
+            <td class="overCell">{{overviewDict['2']['Wed']['11am']}}</td>
+            <td class="overCell">{{overviewDict['2']['Thu']['11am']}}</td>
+            <td class="overCell">{{overviewDict['2']['Fri']['11am']}}</td>
+          </tr>
+          <tr>
+            <th><h4>12 pm</h4></th>
+            <td class="overCell">{{overviewDict['2']['Mon']['12pm']}}</td>
+            <td class="overCell">{{overviewDict['2']['Tue']['12pm']}}</td>
+            <td class="overCell">{{overviewDict['2']['Wed']['12pm']}}</td>
+            <td class="overCell">{{overviewDict['2']['Thu']['12pm']}}</td>
+            <td class="overCell">{{overviewDict['2']['Fri']['12pm']}}</td>
+          </tr>
+          <tr>
+            <th><h4>1 pm</h4></th>
+            <td class="overCell">{{overviewDict['2']['Mon']['1pm']}}</td>
+            <td class="overCell">{{overviewDict['2']['Tue']['1pm']}}</td>
+            <td class="overCell">{{overviewDict['2']['Wed']['1pm']}}</td>
+            <td class="overCell">{{overviewDict['2']['Thu']['1pm']}}</td>
+            <td class="overCell">{{overviewDict['2']['Fri']['1pm']}}</td>
+          </tr>
+          <tr>
+            <th><h4>2 pm</h4></th>
+            <td class="overCell">{{overviewDict['2']['Mon']['2pm']}}</td>
+            <td class="overCell">{{overviewDict['2']['Tue']['2pm']}}</td>
+            <td class="overCell">{{overviewDict['2']['Wed']['2pm']}}</td>
+            <td class="overCell">{{overviewDict['2']['Thu']['2pm']}}</td>
+            <td class="overCell">{{overviewDict['2']['Fri']['2pm']}}</td>
+          </tr>
+          <tr>
+            <th><h4>3 pm</h4></th>
+            <td class="overCell">{{overviewDict['2']['Mon']['3pm']}}</td>
+            <td class="overCell">{{overviewDict['2']['Tue']['3pm']}}</td>
+            <td class="overCell">{{overviewDict['2']['Wed']['3pm']}}</td>
+            <td class="overCell">{{overviewDict['2']['Thu']['3pm']}}</td>
+            <td class="overCell">{{overviewDict['2']['Fri']['3pm']}}</td>
+          </tr>
+          <tr>
+            <th><h4>4 pm</h4></th>
+            <td class="overCell">{{overviewDict['2']['Mon']['4pm']}}</td>
+            <td class="overCell">{{overviewDict['2']['Tue']['4pm']}}</td>
+            <td class="overCell">{{overviewDict['2']['Wed']['4pm']}}</td>
+            <td class="overCell">{{overviewDict['2']['Thu']['4pm']}}</td>
+            <td class="overCell">{{overviewDict['2']['Fri']['4pm']}}</td>
+          </tr>
+        </table>
+
+        <table class="overview" v-if="trimester == 3">
+          <tr>
+            <th><h2>T3</h2></th>
+            <th><h4>Monday</h4></th>
+            <th><h4>Tuesday</h4></th>
+            <th><h4>Wednesday</h4></th>
+            <th><h4>Thursday</h4></th>
+            <th><h4>Friday</h4></th>
+          </hd>
+          <tr>
+            <th><h4>9 am</h4></th>
+            <td class="overCell">{{overviewDict['3']['Mon']['9am']}}</td>
+            <td class="overCell">{{overviewDict['3']['Tue']['9am']}}</td>
+            <td class="overCell">{{overviewDict['3']['Wed']['9am']}}</td>
+            <td class="overCell">{{overviewDict['3']['Thu']['9am']}}</td>
+            <td class="overCell">{{overviewDict['3']['Fri']['9am']}}</td>
+          </tr>
+          <tr>
+            <th><h4>10 am</h4></th>
+            <td class="overCell">{{overviewDict['3']['Mon']['10am']}}</td>
+            <td class="overCell">{{overviewDict['3']['Tue']['10am']}}</td>
+            <td class="overCell">{{overviewDict['3']['Wed']['10am']}}</td>
+            <td class="overCell">{{overviewDict['3']['Thu']['10am']}}</td>
+            <td class="overCell">{{overviewDict['3']['Fri']['10am']}}</td>
+          </tr>
+          <tr>
+            <th><h4>11 am</h4></th>
+            <td class="overCell">{{overviewDict['3']['Mon']['11am']}}</td>
+            <td class="overCell">{{overviewDict['3']['Tue']['11am']}}</td>
+            <td class="overCell">{{overviewDict['3']['Wed']['11am']}}</td>
+            <td class="overCell">{{overviewDict['3']['Thu']['11am']}}</td>
+            <td class="overCell">{{overviewDict['3']['Fri']['11am']}}</td>
+          </tr>
+          <tr>
+            <th><h4>12 pm</h4></th>
+            <td class="overCell">{{overviewDict['3']['Mon']['12pm']}}</td>
+            <td class="overCell">{{overviewDict['3']['Tue']['12pm']}}</td>
+            <td class="overCell">{{overviewDict['3']['Wed']['12pm']}}</td>
+            <td class="overCell">{{overviewDict['3']['Thu']['12pm']}}</td>
+            <td class="overCell">{{overviewDict['3']['Fri']['12pm']}}</td>
+          </tr>
+          <tr>
+            <th><h4>1 pm</h4></th>
+            <td class="overCell">{{overviewDict['3']['Mon']['1pm']}}</td>
+            <td class="overCell">{{overviewDict['3']['Tue']['1pm']}}</td>
+            <td class="overCell">{{overviewDict['3']['Wed']['1pm']}}</td>
+            <td class="overCell">{{overviewDict['3']['Thu']['1pm']}}</td>
+            <td class="overCell">{{overviewDict['3']['Fri']['1pm']}}</td>
+          </tr>
+          <tr>
+            <th><h4>2 pm</h4></th>
+            <td class="overCell">{{overviewDict['3']['Mon']['2pm']}}</td>
+            <td class="overCell">{{overviewDict['3']['Tue']['2pm']}}</td>
+            <td class="overCell">{{overviewDict['3']['Wed']['2pm']}}</td>
+            <td class="overCell">{{overviewDict['3']['Thu']['2pm']}}</td>
+            <td class="overCell">{{overviewDict['3']['Fri']['2pm']}}</td>
+          </tr>
+          <tr>
+            <th><h4>3 pm</h4></th>
+            <td class="overCell">{{overviewDict['3']['Mon']['3pm']}}</td>
+            <td class="overCell">{{overviewDict['3']['Tue']['3pm']}}</td>
+            <td class="overCell">{{overviewDict['3']['Wed']['3pm']}}</td>
+            <td class="overCell">{{overviewDict['3']['Thu']['3pm']}}</td>
+            <td class="overCell">{{overviewDict['3']['Fri']['3pm']}}</td>
+          </tr>
+          <tr>
+            <th><h4>4 pm</h4></th>
+            <td class="overCell">{{overviewDict['3']['Mon']['4pm']}}</td>
+            <td class="overCell">{{overviewDict['3']['Tue']['4pm']}}</td>
+            <td class="overCell">{{overviewDict['3']['Wed']['4pm']}}</td>
+            <td class="overCell">{{overviewDict['3']['Thu']['4pm']}}</td>
+            <td class="overCell">{{overviewDict['3']['Fri']['4pm']}}</td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="flexdiv">
+
+        <!--Landing Page screen == 0-->
+        <article class="landing"  v-if="screen==0" class="screen0" style="top: 30%; transform: translateY(-45%);">
+          <img src="crest.png" id="crest">
+          <div>
+            <br>
+            <h2>Welcome to the Victoria University of Wellington Course Directory</h2>
+            <p>Search our courses to find out the content, timings, fees, and teaching details of the courses you want to take for your programme.</p>
+            <p>Log in to change, add, or edit your courses.</p>
+            <button id="landBtn" @click="enter">Let's get started!</button>
+          </div>
+        </article>
+        
+        <!---Explore screen == 1--->
+        <article v-if="screen==1" class="screen1">
+          <h2>Explore our courses:</h2>
+
+          <table class="tableform">
+            <tr>
+              <td>Year:</td>
+              <td><select v-model='filterYear' @change="filter">
+                <option value="" disabled hidden selected>Filter by year</option>
+                <option v-for="year in courseYear" :value="year">{{year}}</option>
+              </select></td>
+            </tr>
+            <tr>
+              <td>Trimester:</td>
+              <td><select v-model='filterTrimester' @change="filter">
+                <option value="" selected disabled hidden>Filter by trimester</option>
+                <option v-for="trimester in courseTrimester" :value="trimester">{{trimester}}</option>
+              </select></td>
+            </tr>
+            <tr>
+              <td>Lecturer:</td>
+              <td><select v-model='filterLecturer' @change="filter">
+                <option value="" disabled hidden selected>Filter by lecturer</option>
+                <option v-for="lecturer in lecturerList" :value="lecturer['ID']">{{lecturer['LoginName']}}</option>
+              </select></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td><button type='reset' @click='filterReset' style='margin: -3px 0px 0px 10px;'>Reset filters</button></td>
+            </tr>
+            <tr><td colspan="2"><hr></td></tr>
+            <tr>
+              <td>Search by Course ID: </td>
+              <td><input class="inputSearch" @blur="searchBlur" type="text" title="4 letters and 3 digits" placeholder="Search with course ID" pattern="[A-Za-z]{4}[0-9]{3}" v-model="search">
+              <button type="reset" title="Go!" @click="searchCourses" style="height:22px;"><i class="material-icons" style="font-size: 16px;">search</i></button></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td><p style="font-size: smaller; color: grey;">{{searchResults}}</p></td>
+            </tr>
+            <tr><td colspan="2"><hr></td></tr>
+            <tr>
+              <td>Select Course: </td>
+              <td><select class="formSelect" v-model='selectedCourse' @change="selectCourse">
+                <option disabled hidden selected>Select a course</option>
+                <option v-for="course in filteredCourses" :value="course">{{course['Code']}}: {{course['Name']}}</option>
+              </select></td>
+            </tr>
+          </table>
+      
+          <!---Show course description--->
+          <div class="selectedDescription" v-if="selectedDescription == 'show'">
+            <table>
+              <tr><td colspan="4"><hr></td></tr>
+              <tr>
+                <td colspan="4"><h3>{{selectedCourse['Code']}}:{{selectedCourse['Name']}}</h3></td>
+              </tr>
+              <tr>
+                <td><b>Lecturer: </b>{{selectedLecturer}}</td>
+                <td><b>Trimester: </b>{{selectedCourse['Trimester']}}</td>
+                <td><b>Year: </b>{{selectedCourse['Year']}}</td>
+              </tr>
+              <tr><td colspan="4"><br></td></tr>
+              <tr>
+                <td colspan="4"><b>Overview:</b></td>
+              </tr>
+              <tr>
+                <td colspan="4">{{selectedCourse['Overview']}}</td>
+              </tr>
+              <tr><td colspan="4"><br></td></tr>
+            </table>
+          </div>
+          
+          <hr>
+
+          <!---Login Prompt--->
+          <div class="loginPrompt" v-if="loginStatus=='False'">
+            <p>Log in to add {{selectedCourse['Code']}} to your course list!
+              <button @click="pop = 1">Login</button>
+            </p>
+          </div>
+
+          <div v-if="loginStatus=='True'">
+            <button class="courseListBtns" @click="addCourse" title="Add the selected course to your course list">Add Course</button>
+          </div>
+
+
+        </article>
+        
+
+         <!---Course screen == 2--->
+        <article v-if="screen==2" class="screen2and3">
+          <div class='myCourseList'>
+            <h2>My Course List</h2>
+            <table class="MCLtable">
+              <tr>
+                <th>
+                </th>  
+                <th>
+                  Code
+                </th>
+                <th>
+                  Course Name
+                </th>
+                <th>
+                  Trimester
+                </th>
+              </tr>
+              <tr v-for='course in myCourseList'>
+                <td>
+                  <input type="checkbox" id="MCLcheckbox" :value="course" v-model="MCLselect" @change="MCLselected">
+                </td>
+                <td>
+                  {{course['Code'] + ":"}}
+                </td>
+                <td>
+                  {{course['Name']}}
+                </td>
+                <td>
+                  {{course['Trimester']}}
+                </td>
+              </tr>
+            </table>
+          <br>
+          </div>
+
+          <!---Show course description--->
+          <div class="selectedDescription" v-if="MCLselectedDescription == 'show'">
+            <table>
+              <tr><td colspan="4"><hr></td></tr>
+              <tr>
+                <td colspan="4"><h3>{{MCLselect[0]['Code']}}:{{MCLselect[0]['Name']}}</h3></td>
+              </tr>
+              <tr>
+                <td><b>Lecturer: </b>{{MCLSelectLecturer}}</td>
+                <td><b>Trimester: </b>{{MCLselect[0]['Trimester']}}</td>
+                <td><b>Year: </b>{{MCLselect[0]['Year']}}</td>
+              </tr>
+              <tr><td colspan="4"><br></td></tr>
+              <tr>
+                <td colspan="4"><b>Overview:</b></td>
+              </tr>
+              <tr>
+                <td colspan="4">{{MCLselect[0]['Overview']}}</td>
+              </tr>
+              <tr><td colspan="4"><hr></td></tr>
+              
+            </table>
+          </div>
+
+          <div class="courseListBtnDiv">
+            <button class="courseListBtns" @click="editScreen" v-if="userType=='lecturer'">Edit</button>
+            <button class="courseListBtns" @click="createScreen" v-if="userType=='lecturer'">Create</button>
+            <button class="courseListBtns" @click="deletePop">Delete</button>
+          </div>
+
+        </article>
+
+        <!---Edit/Create course details--->
+        <article v-if="screen==3" class="screen2and3">
+          <h2>
+            <span v-if="createMode=='off'">Edit </span>
+            <span v-if="createMode=='on'">Create </span>
+            a Course</h2>
+
+          <form v-on:submit.prevent name="loginForm">
+          <table class="edittable">
+            <tr>
+              <td colspan="2">Course Code:</td>
+              <td colspan="4"><input type="text" v-model="MCLselect[0]['Code']" pattern="[A-Za-z]{4}[0-9]{3}" title="Code must be 4 letters and 3 numbers" placeholder="e.g. CODE123" required></td>
+            </tr>
+            <tr>
+              <td colspan="2">Course Name:</td>
+              <td colspan="4"><input type="text" v-model="MCLselect[0]['Name']" required></td>
+            </tr>
+            <tr>
+              <td colspan="2">Lecturer:</td>
+              <td colspan="4">
+                <select v-model="MCLselect[0]['LecturerID']" required @change="MCLselected">
+                  <option v-for="lecturer in lecturerList" :value="lecturer['ID']" v-bind:selected="lecturer['LoginName']==loginName">{{lecturer['LoginName']}}</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2">Trimester Offered:</td>
+              <td colspan="4"><input type="text" v-model="MCLselect[0]['Trimester']" pattern="[1-3]{1}"  required></td>
+            </tr>
+            <tr>
+              <td colspan="2">Year Offered:</td>
+              <td colspan="4"><input type="text" v-model="MCLselect[0]['Year']" required>
+            </tr>
+            <tr>
+              <td colspan="2">Course Overview:</td>
+              <td colspan="4"><textarea wrap="soft" id="overview" rows=6 v-model="MCLselect[0]['Overview']" rows="4" required></textarea></td>
+            </tr>
+            <tr>
+              <td style="border-bottom: 1px solid #888; padding-top: 20px;">Lecture Times:</td>
+              <td colspan="5" style="border-bottom: 1px solid #888; padding-top: 20px; font-size: smaller; color: grey">Note: All lectures are 1 hour.</td>
+            </tr>
+            <tr>
+              <td>Day:</td>
+              <td>{{MCLselect[0]['LectureTimes'][0]}}</td>
+              <td>Start time:</td>
+              <td>{{MCLselect[0]['LectureTimes'][1]}}</td>
+              <td>End time:</td>
+              <td>{{MCLselect[0]['LectureTimes'][2]}}</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>
+                <select v-model="MCLselect[0]['LectureTimes'][0]" style="float:left;" required>
+                  <option value="Mon">Monday</option>
+                  <option value="Tue">Tueday</option>
+                  <option value="Wed">Wednesday</option>
+                  <option value="Thu">Thursday</option>
+                  <option value="Fri">Friday</option>
+                </select>
+              </td>
+              <td></td>
+              <td>
+                <select v-model="MCLselect[0]['LectureTimes'][1]" style="float:left;" @change="endLec" required>
+                  <option value="9am">9am</option>
+                  <option value="10am">10am</option>
+                  <option value="11am">11am</option>
+                  <option value="12pm">12pm</option>
+                  <option value="1pm">1pm</option>
+                  <option value="2pm">2pm</option>
+                  <option value="3pm">3pm</option>
+                  <option value="4pm">4pm</option>
+                </select>
+              </td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td style="border-bottom: 1px solid #888; padding-top: 20px;">Workshop 1 Times:</td>
+              <td colspan="5" style="border-bottom: 1px solid #888; padding-top: 20px; font-size: smaller; color: grey">Note: All workshops are 1 hour.</td>
+            </tr>
+            <tr>
+              <td>Day:</td>
+              <td>{{MCLselect[0]['WorkshopTimes'][0][0]}}</td>
+              <td>Start time:</td>
+              <td>{{MCLselect[0]['WorkshopTimes'][0][1]}}</td>
+              <td>End time:</td>
+              <td>{{MCLselect[0]['WorkshopTimes'][0][2]}}</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>
+                <select v-model="MCLselect[0]['WorkshopTimes'][0][0]" style="float:left;" required>
+                  <option value="Mon">Monday</option>
+                  <option value="Tue">Tueday</option>
+                  <option value="Wed">Wednesday</option>
+                  <option value="Thu">Thursday</option>
+                  <option value="Fri">Friday</option>
+                </select>
+              </td>
+              <td></td>
+              <td>
+                <select v-model="MCLselect[0]['WorkshopTimes'][0][1]" @change="endW1" style="float:left;" required>
+                  <option value="9am">9am</option>
+                  <option value="10am">10am</option>
+                  <option value="11am">11am</option>
+                  <option value="12pm">12pm</option>
+                  <option value="1pm">1pm</option>
+                  <option value="2pm">2pm</option>
+                  <option value="3pm">3pm</option>
+                  <option value="4pm">4pm</option>
+                </select>
+              </td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td style="border-bottom: 1px solid #888; padding-top: 20px;">Workshop 2 Times:</td>
+              <td colspan="5" style="border-bottom: 1px solid #888; padding-top: 20px; font-size: smaller; color: grey">Note: All lectures are 1 hour.</td>
+            </tr>
+            <tr>
+              <td>Day:</td>
+              <td>{{MCLselect[0]['WorkshopTimes'][1][0]}}</td>
+              <td>Start time:</td>
+              <td>{{MCLselect[0]['WorkshopTimes'][1][1]}}</td>
+              <td>End time:</td>
+              <td>{{MCLselect[0]['WorkshopTimes'][1][2]}}</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>
+                <select v-model="MCLselect[0]['WorkshopTimes'][1][0]" style="float:left;" required>
+                  <option value="Mon">Monday</option>
+                  <option value="Tue">Tueday</option>
+                  <option value="Wed">Wednesday</option>
+                  <option value="Thu">Thursday</option>
+                  <option value="Fri">Friday</option>
+                </select>
+              </td>
+              <td></td>
+              <td>
+                <select v-model="MCLselect[0]['WorkshopTimes'][1][1]" @change="endW2" style="float:left;" required>
+                  <option value="9am">9am</option>
+                  <option value="10am">10am</option>
+                  <option value="11am">11am</option>
+                  <option value="12pm">12pm</option>
+                  <option value="1pm">1pm</option>
+                  <option value="2pm">2pm</option>
+                  <option value="3pm">3pm</option>
+                  <option value="4pm">4pm</option>
+                </select>
+              </td>
+              <td></td>
+              <td></td>
+            </tr>
+          </table>
+
+          <hr>
+
+          <button type='submit' class="courseListBtns" @click="cancelCreate" v-if="createMode == 'on'">Cancel</button>
+          <button type='submit' class="courseListBtns" @click="cancelEdit" v-if="createMode == 'off'">Cancel</button>
+          <button type='submit' class="courseListBtns" @click="confirmCourseUpdates">Confirm Course</button>
+          </form>
+
+          <br>
+        </article>
+
+      </div>
+
+      <!---Login pop == 1 --->
+      <div class='pop' v-if='pop==1'>
+        <button class='closePopBtn' @click="closePop"><i class="material-icons" style="font-size: 16px;">clear</i></button>
+        
+        <h2>Log In</h2>
+        <form>
+          <table class="logintable">
+            <tr>
+              <td>Username:</td>
+              <td><input type="text" placeholder="Enter username" class="popInputText" required v-model="loginName"></td>
+            </tr>
+            <tr>
+              <td>Password:</td>
+              <td><input type="password" placeholder="Enter password" class="popInputText" required v-model="password">
+              </td>
+            </tr>
+          </table>
+
+          <p style="font-size: smaller; color: grey;">{{loginAlert}}</p>
+
+          <hr>
+              
+          <p>
+            <button type="reset" title="Clear all fields" class="courseListBtns">Reset</button>
+            <button title="Let's go!" class="courseListBtns" @click="login">Login</button>
+          </p>
+        </form>
+      </div>
+
+      <!---Log Out pop == 2 --->
+      <div class='pop' v-if='pop==2'>
+        
+        <button class='closePopBtn' @click="closePop"><i class="material-icons" style="font-size: 16px;">clear</i></button>
+
+        <p>Are you sure you want to log out?
+        </p>  
+
+        <button class="courseListBtns" @click="closePop">No</button>
+        <button class="courseListBtns" @click="logout">Yes</button>
+
+          
+      </div>
+
+      <!---Overview Clash Alert  pop == 3 --->
+      <div class='pop' v-if='pop==3'>
+        
+        <button class='closePopBtn' @click="closePop"><i class="material-icons" style="font-size: 16px;">clear</i></button>
+
+        <p>
+          There is a clash between
+        </p>  
+
+        {{clashAlert}}
+          
+      </div>
+
+      <!---No course selected pop == 8 --->
+      <div class='pop' v-if='pop==8'>
+      
+        <button class='closePopBtn' @click="closePop"><i class="material-icons" style="font-size: 16px;">clear</i></button>
+
+        <p>You have not selected a course to add.
+          Please select a course from the list.</p>
+
+      </div>
+
+      <!---Lecturer Add already pop == 9 --->
+      <div class='pop' v-if='pop==9'>
+      
+        <button class='closePopBtn' @click="closePop"><i class="material-icons" style="font-size: 16px;">clear</i></button>
+
+        <p>You are already the assigned lecturer for {{selectedCourse['Code']}}.
+          Please edit this course if you need to change any details.</p>
+
+      </div>
+
+      <!---Lecturer Add clash pop == 10 --->
+      <div class='pop' v-if='pop==10'>
+      
+        <button class='closePopBtn' @click="closePop"><i class="material-icons" style="font-size: 16px;">clear</i></button>
+
+        <p>{{selectedLecturer}} is already the assigned lecturer for {{selectedCourse['Code']}}. 
+          They are the only person who can reassign or edit this course. 
+          Please contact {{selectedLecturer}} if you need this course reassigned or edited.</p>
+
+      </div>
+
+      <!---Edit Select only 1 pop == 11 --->
+      <div class='pop' v-if='pop==11'>
+      
+        <button class='closePopBtn' @click="closePop"><i class="material-icons" style="font-size: 16px;">clear</i></button>
+
+        <p>You can only edit one course at a time.
+          Please select a course on your list to edit.</p>
+
+      </div>
+
+      <!---Confirm Edited/Create course details  pop == 12 --->
+      <div class='pop' v-if='pop==12' style="width: 500px;">
+        
+        <button class='closePopBtn' @click="closePop"><i class="material-icons" style="font-size: 16px;">clear</i></button>
+        
+        <h2>{{MCLselect[0]['Code']}}:{{MCLselect[0]['Name']}}</h2>
+        <h3>Please confirm these details:</h3>
+        <div>
+          <table>
+            <tr>
+              <td><b>Lecturer: </b></td>
+              <td>{{MCLSelectLecturer}}</td>
+              <td><b>Trimester: </b></td>
+              <td>{{MCLselect[0]['Trimester']}}</td>
+              <td><b>Year: </b></td>
+              <td>{{MCLselect[0]['Year']}}</td>
+            </tr>
+            <tr><td colspan="6"><br></td></tr>
+            <tr>
+              <td colspan="6"><b>Overview:</b></td>
+            </tr>
+            <tr>
+              <td colspan="6">{{MCLselect[0]['Overview']}}</td>
+            </tr>
+            <tr><td colspan="6"><br></td></tr>
+            <tr>
+              <td colspan="6" style="border-bottom: 1px solid #888; padding-top: 20px;"><b>Lecture Times:</b></td>
+            </tr>
+            <tr>
+              <td>Day:</td>
+              <td>{{MCLselect[0]['LectureTimes'][0]}}</td>
+              <td>Start:</td>
+              <td>{{MCLselect[0]['LectureTimes'][1]}}</td>
+              <td>End:</td>
+              <td>{{MCLselect[0]['LectureTimes'][2]}}</td>
+            </tr>
+          
+            <tr>
+              <td colspan="6" style="border-bottom: 1px solid #888; padding-top: 20px;"><b>Workshop 1 Times:</b></td>
+            </tr>
+            <tr>
+              <td>Day:</td>
+              <td>{{MCLselect[0]['WorkshopTimes'][0][0]}}</td>
+              <td>Start:</td>
+              <td>{{MCLselect[0]['WorkshopTimes'][0][1]}}</td>
+              <td>End:</td>
+              <td>{{MCLselect[0]['WorkshopTimes'][0][2]}}</td>
+            </tr>
+            <tr>
+              <td colspan="6" style="border-bottom: 1px solid #888; padding-top: 20px;"><b>Workshop 2 Times:</b></td>
+            </tr>
+            <tr>
+              <td>Day:</td>
+              <td>{{MCLselect[0]['WorkshopTimes'][1][0]}}</td>
+              <td>Start:</td>
+              <td>{{MCLselect[0]['WorkshopTimes'][1][1]}}</td>
+              <td>End:</td>
+              <td>{{MCLselect[0]['WorkshopTimes'][1][2]}}</td>
+            </tr>
+          </table>
+
+          <br>
+          <hr>
+
+          <button class="courseListBtns" @click="closePop">Cancel</button>
+          <button class="courseListBtns" @click="updateCourse">Confirm</button>
+          
+
+          <br><br>
+        </div>
+      </div>
+
+      <!---Confirm Delete pop == 13 --->
+      <div class='pop' v-if='pop==13'>
+      
+        <button class='closePopBtn' @click="closePop"><i class="material-icons" style="font-size: 16px;">clear</i></button>
+
+        <p>You are about to delete</p>
+        <p>{{MCLselect[0]['Code']}}: {{MCLselect[0]['Name']}}</p>
+        <p>Are you sure you want to delete this course? This action cannot be undone.</p>
+
+        
+        <button class="courseListBtns" @click="closePop">No</button>
+        <button class="courseListBtns" @click="deleteCourse">Yes</button>
+      </div>
+
+      <!---Delete Select only 1 pop == 14 --->
+      <div class='pop' v-if='pop==14'>
+      
+        <button class='closePopBtn' @click="closePop"><i class="material-icons" style="font-size: 16px;">clear</i></button>
+
+        <p>You can only delete one course at a time.
+          Please select a course on your list to delete.</p>
+
+      </div>
+
+      <!---Incomplete edit/create form pop == 15 --->
+      <div class='pop' v-if='pop==15'>
+      
+        <button class='closePopBtn' @click="closePop"><i class="material-icons" style="font-size: 16px;">clear</i></button>
+
+        <p>{{incomplteteForm}}</p>
+
+      </div>
+    <footer>
+      <p>
+        <i class="material-icons">phone</i>0800 04 04 04 &nbsp;
+        <i class="material-icons">phone</i>+64 4 472 1000 &nbsp;
+        <i class="material-icons">email</i>info@vuw.ac.nz &nbsp;
+        <i class="material-icons">phone</i>Emergency: +64 4 463 9999 or ext. 8888 (internal)
+      </p>
+    </footer>
+
+<script type="text/python">
+from browser import window
+from browser import document
+from browser import ajax
+import json
+import urllib.request
+import browser.timer as timer
+
+
+def loads2(s):
+  d = json.loads(s)
+  if 'users' in d:
+    return d['users']
+  if 'courses' in d:
+    courses = d['courses']
+    for c in courses:
+      if c is None:
+        continue
+      if 'ID' in c and c['ID'] is None:
+        continue
+      else:
+        # uncompress Code from Name
+        list = c['Name'].split('|')
+        c['Code'] = list[0]
+        c['Name'] = list[1]
+        # uncompress lecture times and workshop times from lecturetimes
+        # ... and split each one into list
+        list = c['LectureTimes'].split('|') # split lecture and workshops
+        c['LectureTimes'] = list[0].split('::')
+        # split up the rest of the list
+        c['WorkshopTimes'] = [x.split('::') for x in list[1:]]
+    return courses
+  if 'courseAssociations' in d:
+    # uncompress workshop number from studentID
+    cas = d['courseAssociations']
+    for ca in cas:
+      list = ca['StudentID'].split('|')
+      ca['StudentID'] = list[0]
+      ca['Workshop'] = list[1]
+    return cas
+
+  
+def dumps2(d): 
+  print("Input dictionary:", d)
+  # if have Code and Name then compress into name
+  if 'Code' in d and 'Name' in d:
+    d['Name'] = d['Code'] + '|' + d['Name']
+    d.pop('Code')
+  # if have LectureTimes and WorkshopTimes then compress them 
+  if 'LectureTimes' in d and 'WorkshopTimes' in d:
+    lt = d['LectureTimes'] 
+    s = "{}::{}::{}".format(lt[0],lt[1],lt[2])
+    for w in d['WorkshopTimes']:
+      s = s + "|{}::{}::{}".format(w[0],w[1],w[2])
+    d['LectureTimes'] = s
+    d.pop('WorkshopTimes')
+  # if it has Workshop then compress into Student ID
+  if 'Workshop' in d:
+    d['StudentID'] = "{}|{}".format(d['StudentID'], d['Workshop'])
+    d.pop('Workshop')
+  return json.dumps(d)
+  print("Modified dictionary:", d)
+
+  
+def pythonGet(getURL):
+  print("Getting " + getURL)
+  contents = urllib.request.urlopen(getURL).read()
+  return json.dumps(loads2(contents))
+
+  
+def pythonPost(postURL,contents_to_post):
+  data = json.loads(contents_to_post)
+  data_string = dumps2(data)
+  print("Data = " + data_string)
+  ajax.post(postURL, headers={"Content-Type": "application/json"}, data=data_string)
+  # Workaround for buggy server - when updating a course association delete the old one ...
+  if postURL.find("course_association") > 0:
+    url = "https://caab.sim.vuw.ac.nz/api/newclai/delete.course_association.{}.json".format(data['ID'])
+    print("Deleting: "+url)
+    ajax.delete(url)
+
+  
+def pythonDel(delURL):
+  print("About to del " + delURL)
+  ajax.delete(delURL, headers={"Content-Type": "application/json"})
+
+
+################ Overview functions ###########################################
+
+#Show course lecture and workshop details from MCL.
+def showCourseDetails():
+  #Reset overview dictionary
+  app.overviewDict = {
+    '1': {
+      'Mon':{'9am':'', '10am':'', '11am':'', '12pm':'', '1pm':'', '2pm':'', '3pm':'', '4pm':''},
+      'Tue':{'9am':'', '10am':'', '11am':'', '12pm':'', '1pm':'', '2pm':'', '3pm':'', '4pm':''},
+      'Wed':{'9am':'', '10am':'', '11am':'', '12pm':'', '1pm':'', '2pm':'', '3pm':'', '4pm':''},
+      'Thu':{'9am':'', '10am':'', '11am':'', '12pm':'', '1pm':'', '2pm':'', '3pm':'', '4pm':''},
+      'Fri':{'9am':'', '10am':'', '11am':'', '12pm':'', '1pm':'', '2pm':'', '3pm':'', '4pm':''}
+    },
+    '2':{
+      'Mon':{'9am':'', '10am':'', '11am':'', '12pm':'', '1pm':'', '2pm':'', '3pm':'', '4pm':''},
+      'Tue':{'9am':'', '10am':'', '11am':'', '12pm':'', '1pm':'', '2pm':'', '3pm':'', '4pm':''},
+      'Wed':{'9am':'', '10am':'', '11am':'', '12pm':'', '1pm':'', '2pm':'', '3pm':'', '4pm':''},
+      'Thu':{'9am':'', '10am':'', '11am':'', '12pm':'', '1pm':'', '2pm':'', '3pm':'', '4pm':''},
+      'Fri':{'9am':'', '10am':'', '11am':'', '12pm':'', '1pm':'', '2pm':'', '3pm':'', '4pm':''}
+    },
+    '3':{
+      'Mon':{'9am':'', '10am':'', '11am':'', '12pm':'', '1pm':'', '2pm':'', '3pm':'', '4pm':''},
+      'Tue':{'9am':'', '10am':'', '11am':'', '12pm':'', '1pm':'', '2pm':'', '3pm':'', '4pm':''},
+      'Wed':{'9am':'', '10am':'', '11am':'', '12pm':'', '1pm':'', '2pm':'', '3pm':'', '4pm':''},
+      'Thu':{'9am':'', '10am':'', '11am':'', '12pm':'', '1pm':'', '2pm':'', '3pm':'', '4pm':''},
+      'Fri':{'9am':'', '10am':'', '11am':'', '12pm':'', '1pm':'', '2pm':'', '3pm':'', '4pm':''}
+    }
+  }
+
+  #Show user course details on Overview. Must do MCL courses first, before selected course,
+  # to identify clashes. Must be iterative to clear previously selected courses. Comments
+  # are in selected course workshop details.
+
+  ### My Course list lecture times to Overview ####
+  for course in app.myCourseList:
+    #Local variables for easier calling
+    trimester = course['Trimester']
+    lecture = course['LectureTimes']
+    dayL = lecture[0]
+    startL = lecture[1]
+    endL = lecture[2]
+    #Create the text to show
+    slotL = course['Code'] + " lecture: " + startL + "-" + endL
+    #Put text into dictionary
+    app.overviewDict[trimester][dayL][startL] = slotL
+    #woop and shout! it works!
+
+    for workshop in course['WorkshopTimes']:
+      dayW = workshop[0]
+      startW = workshop[1]
+      endW = workshop[2]
+      slotW = course['Code'] + " workshop: " + startW + "-" + endW
+      app.overviewDict[trimester][dayW][startW] = slotW
+  selectedCourseOverview()
+
+
+def selectedCourseOverview():
+  course = app.selectedCourse
+  trimester = course['Trimester']
+  lecture = course['LectureTimes']
+  dayL = lecture[0]
+  startL = lecture[1]
+  endL = lecture[2]
+  slotL = course['Code'] + " lecture: " + startL + "-" + endL
+  if app.overviewDict[trimester][dayL][startL] == '':
+    app.overviewDict[trimester][dayL][startL] = slotL
+  else:
+    msg = dayL + " " + slotL + " & " + app.overviewDict[trimester][dayL][startL]
+    app.clashAlert = msg
+    app.pop = 3
+
+  for workshop in course['WorkshopTimes']:
+    dayW = workshop[0]
+    startW = workshop[1]
+    endW = workshop[2]
+    slotW = course['Code'] + " workshop: " + startW + "-" + endW
+    if app.overviewDict[trimester][dayW][startW] == '':
+      app.overviewDict[trimester][dayW][startW] = slotW
+    else:
+      msg = dayW + " " + slotW + " & " + app.overviewDict[trimester][dayW][startW]
+      app.clashAlert = msg
+      app.pop = 3
+
+
+
+################ Reuseable functions ###########################################
+
+
+def getCourseLists():
+  coursesString = urllib.request.urlopen(app.getCourses).read()
+  # convert string to data structure
+  courses = loads2(coursesString)
+  # add to 'courses'
+  app.courses = courses
+  app.filteredCourses = courses
+
+
+def getUserLists():
+  usersString = urllib.request.urlopen(app.getUsers).read()
+  # convert string to data structure
+  users = loads2(usersString) 
+  # add to 'users'
+  app.users = users
+  print(users)
+
+
+def getCourseAssocs():
+  assocString = urllib.request.urlopen(app.getAssoc).read()
+  # convert string to data structure
+  assoc = loads2(assocString) 
+  # add to 'enrolments'
+  app.enrolments = assoc
+
+
+### Reset FILTER LISTS to only show unique values ###
+def filterUnique():
+  # Unique years list
+  for course in app.courses:
+    if not (course['Year'] in app.courseYear):
+      app.courseYear.append(course['Year'])
+  # Unique trimesters list
+  for course in app.courses:
+    if not (course['Trimester'] in app.courseTrimester):
+      app.courseTrimester.append(course['Trimester'])
+  # Unique Lecturers list:
+  for user in app.users:
+    if user['UserType'] == 'lecturer':
+      app.lecturerList.append(user)
+
+
+### Reset user lists ###
+def getUserDetails():
+  app.myCourseList = []
+  for user in app.users:
+    if app.loginName == user['LoginName']:
+      app.userType = user['UserType']
+      ID = user['ID']
+      app.userID = ID
+      if app.userType == 'lecturer':
+        getLecMCL()
+
+
+### Get lecturer MCL ###
+def getLecMCL():
+  for course in app.courses:
+    if course['LecturerID'] == app.userID:
+      app.myCourseList.append(course)
+
+
+### POST course Update ###
+def postCourseUpdate(course):
+  #convert updated course to string
+  dataString = dumps2(course)
+  #POST updated course
+  pythonPost(app.postCourses,dataString)
+  #delay refresh of course lists
+  app.screen = 2
+  timer.set_timeout(lambda:refreshCourses(), 5000)
+
+
+### POST association Update ###
+def postCourseAssoc(newCourse):
+  data = dumps2(newCourse)
+  pythonPost(app.postAssoc,data)
+  refreshCourses()
+
+
+### DELETE course ###
+def deleteCourse(ev):
+  app.pop = ''
+  app.createMode = 'off'
+  courseID = app.MCLselect[0]['ID']
+  delURL = 'https://caab.sim.vuw.ac.nz/api/newclai/delete.course.' + courseID + '.json'
+  pythonDel(delURL)
+  app.screen = 1
+  timer.set_timeout(lambda:refreshCourses(), 5000)
+  app.MCLselect = []
+  
+
+def refreshCourses():
+  #Refresh course reference: app.courses
+  app.courses = []
+  getCourseLists()
+  #refresh my course list
+  app.myCourseList = []
+  getUserDetails()
+  #Refresh week overview
+  showCourseDetails()
+
+
+################ User loads app ##############################################
+
+
+# Load all reference dictionaries and lists
+#Trigger: 'Enter' (screen0)
+def enter(ev):
+  # Show directory hide landing page
+  app.screen = 1
+  getCourseLists()
+  getUserLists()
+  getCourseAssocs()
+  filterUnique()
+  getUserDetails()
+  showCourseDetails()
+
+
+def login(ev):
+  #Both fields are empty
+  if len(app.loginName) == 0 and len(app.password) == 0:
+    app.loginAlert = 'You must enter a username and a password.'
+  # username is empty
+  elif len(app.loginName) == 0 and len(app.password) > 0:
+    app.loginAlert = 'You must enter a username.'
+  # password is empty
+  elif len(app.loginName) > 0 and len(app.password) == 0:
+    app.loginAlert = 'You must enter a password.'
+  # Both username and password are entered
+  elif len(app.loginName) > 0 and len(app.password) > 0:
+    # Check if username is correct
+    for user in app.users:
+      if user['LoginName'] == app.loginName:
+        # Username is correct
+        if user['Password'] == app.password:
+          # Password is correct
+          closePop(ev)
+          app.loginStatus = 'True'
+          app.screen = 2
+          getUserDetails()
+          showCourseDetails()
+          if len(app.selectedCourse)>0:
+            addCourse(ev)
+        else:
+          # Password is wrong
+          app.loginAlert = 'Your username is correct but your password is wrong..'
+        break
+    else:
+      # No matching username found
+      app.loginAlert = 'Your username is not recognised. Please try again.'
+
+
+      
+def logout(ev):
+  app.userID = ''
+  app.userType = ''
+  app.loginStatus = 'False'
+  app.myCourseList = []
+  closePop(ev)
+  app.loginAlert = ''
+  app.MCLselect = []
+  app.screen = 1
+  showCourseDetails()
+
+      
+############### Nav functions ###############################################
+
+def navCourses(ev):
+  app.screen = 2
+  print('check 1')
+  app.selectedCourse = {}
+  print('check 2')
+  app.selectedLecturer = ''
+  print('check 3')
+  app.selectedDescription = 'hide'
+  print('check 4')
+  
+
+def navDirectory(ev):
+  app.screen = 1
+  app.selectedCourse = {}
+  app.selectedLecturer = ''
+  app.selectedDescription = 'hide'
+  showCourseDetails()
+
+
+############### Filters and searches ###############################################
+
+#Filter course list drop down to only courses with the filter selections. 
+#Trigger 'Apply Filters' (screen1)
+def filter(ev):
+  app.filteredCourses = app.courses
+  #Setup list for courses filtered by year
+  filter1 = []
+  #check if there is a year filter
+  if app.filterYear == '':
+    #if no filter set then filter1 list should include all courses
+    filter1 = app.courses
+  #if there is a filter year then only courses with that year should be on filter1 list
+  else:
+    for course in app.courses:
+      if course['Year'] == app.filterYear:
+        filter1.append(course)
+  #Setup list for courses filtered by trimester
+  filter2 = []
+  #check if there is a trimester filter set
+  if app.filterTrimester == '':
+    filter2 = filter1
+  #if there is a trimester filter set then only include those courses from filter1 list in filter2 list.
+  else:
+    for course in filter1:
+      if course['Trimester'] == app.filterTrimester:
+        filter2.append(course)
+  #Setup list for courses filtered by lecturer
+  filter3 = []
+  #check if there is a lecturer filter set
+  if app.filterLecturer == '':
+    filter3 = filter2
+  #if there is a lecturer filter set then only include those courses from filter2 list in filter3 list.
+  else:
+    for course in filter2:
+      if course['LecturerID'] == app.filterLecturer:
+        filter3.append(course)
+  app.filteredCourses = filter3
+
+#Reset filteredCourses to contain all courses and filters returned to start values
+#Trigger: 'Reset' (screen0)
+def filterReset(ev):
+    app.filteredCourses = app.courses
+    app.filterYear = ''
+    app.filterTrimester = ''
+    app.filterLecturer = ''
+    app.selectedCourse = {}
+    app.selectedDescription = 'hide'
+
+def searchBlur(ev):
+  app.searchResults = ''
+
+#Search all courses using course code
+#Trigger: 'Magnifier'icon (screen0)
+def searchCourses(ev):
+  app.filteredCourses = app.courses
+  app.searchResults = ""
+  app.selectedCourse = {}
+  app.selectedDescription = 'hide'
+  for course in app.courses:
+    if str.upper(app.search) == course['Code']:
+      app.selectedCourse = course
+      app.selectedDescription = 'show'
+    else:
+      app.searchResults = "Please try a valid course ID (4 letters and 3 numbers)"
+      
+
+def selectCourse(ev):
+  app.selectedDescription = 'show'
+  for user in app.users:
+    if user['ID'] == app.selectedCourse['LecturerID']:
+      app.selectedLecturer = user['LoginName']
+  showCourseDetails()
+  trimester = app.selectedCourse['Trimester']
+  app.trimester = trimester
+
+
+# Add course association
+def addCourse(ev):
+  select = app.selectedCourse
+  #Check if course selected
+  if 'ID' in select and len(select['ID']) >= 1:
+    # Check if course has lecturer
+    if len(select['LecturerID']) >= 1:
+      #check if user is already assigned to the course
+      if select['LecturerID'] == app.userID:
+        app.pop = 9
+      else:
+        app.pop = 10
+    #No lecturer then assign to user
+    else:
+      select['LecturerID'] = app.userID
+      print('1asd')
+      refreshCourses()
+  else:
+    #No course selected
+    app.pop = 8
+
+
+############### Courses (edit/create/delete) functions ###########################################
+
+#When a user selects/deselects a course from MCL
+#Trigger: Check MCL list item (screen2)
+def MCLselected(ev):
+  #Check if MCLselect has only one course in it
+  if len(app.MCLselect) == 1:
+    for lecturer in app.lecturerList:
+      if lecturer['ID'] == app.MCLselect[0]['LecturerID']:
+        app.MCLSelectLecturer = lecturer['LoginName']
+    app.MCLselectedDescription = 'show'
+  elif len(app.MCLselect) == 0:
+    app.MCLselectedDescription = 'hide'
+  else:
+    app.MCLselectedDescription = 'hide'
+
+def editScreen(ev):
+  if len(app.MCLselect) == 1:
+    app.screen = 3
+  else:
+    app.pop = 11
+
+
+    ##########
+    #        #
+    #        #
+    ##########
+    
+
+def confirmCourseUpdates(ev):
+  a = app.MCLselect[0]['Code']
+  b = app.MCLselect[0]['Name']
+  c = app.MCLselect[0]['LecturerID']
+  d = app.MCLselect[0]['Trimester']
+  e = app.MCLselect[0]['Year']
+  f = app.MCLselect[0]['Overview']
+  g = app.MCLselect[0]['LectureTimes'][0]
+  h = app.MCLselect[0]['LectureTimes'][1]
+  i = app.MCLselect[0]['LectureTimes'][2]
+  j = app.MCLselect[0]['WorkshopTimes'][0][0]
+  k = app.MCLselect[0]['WorkshopTimes'][0][1]
+  l = app.MCLselect[0]['WorkshopTimes'][0][2]
+  m = app.MCLselect[0]['WorkshopTimes'][1][0]
+  n = app.MCLselect[0]['WorkshopTimes'][1][1]
+  o = app.MCLselect[0]['WorkshopTimes'][1][2]
+  p = 0
+  for z in (a,b,c,d,f,g,h,i,j,k,l,m,n,o):
+    if len(z) == 0:
+      p = p + 1
+  if e < 0:
+      p = p + 1
+  if p > 0:
+    app.pop = 15
+  else:
+    if p == 1:
+      app.incompleteForm = p," field is incomplete. Please check your course details."
+    elif p > 1:
+      app.incompleteForm = p," fields are incomplete. Please check your course details."
+    app.pop = 12
+  
+
+def updateCourse(ev):
+  app.pop = ''
+  app.createMode = 'off'
+  newCourse = {}
+  newCourse['ID'] = app.MCLselect[0]['ID']
+  newCourse['Name'] = app.MCLselect[0]['Name']
+  newCourse['Overview'] = app.MCLselect[0]['Overview']
+  newCourse['Year'] = app.MCLselect[0]['Year']
+  newCourse['Trimester'] = app.MCLselect[0]['Trimester']
+  newCourse['LectureTimes'] = app.MCLselect[0]['LectureTimes']
+  newCourse['LecturerID'] = app.MCLselect[0]['LecturerID']
+  newCourse['Code'] = app.MCLselect[0]['Code']
+  newCourse['WorkshopTimes'] = app.MCLselect[0]['WorkshopTimes']
+  postCourseUpdate(newCourse)
+
+
+def endLec(ev):
+  a = app.MCLselect[0]['LectureTimes'][1]
+  b = a[:-2]
+  c = int(b)
+  if c > 8 and c < 12:
+    d = c + 1
+    e = str(d)
+    if c == 9 or c == 10:
+      f = e + 'am'
+    elif c == 11:
+      f = e + 'pm' 
+  elif c < 5:
+    d = c + 1
+    e = str(d)
+    f = e + 'pm'
+  elif c == 12:
+    d = 1
+    e = str(d)
+    f = e + 'pm'
+  app.MCLselect[0]['LectureTimes'][2] = f
+
+def endW1(ev):
+  a = app.MCLselect[0]['WorkshopTimes'][0][1]
+  b = a[:-2]
+  c = int(b)
+  if c > 8 and c < 12:
+    d = c + 1
+    e = str(d)
+    if c == 9 or c == 10:
+      f = e + 'am'
+    elif c == 11:
+      f = e + 'pm' 
+  if c < 5:
+    d = c + 1
+    e = str(d)
+    f = e + 'pm'
+  elif c == 12:
+    d = 1
+    e = str(d)
+    f = e + 'pm'
+  g = []
+  h = app.MCLselect[0]['WorkshopTimes'][0][0]
+  g = [h, a, f]
+  app.MCLselect[0]['WorkshopTimes'][0] = g
+
+def endW2(ev):
+  a = app.MCLselect[0]['WorkshopTimes'][1][1]
+  b = a[:-2]
+  c = int(b)
+  if c > 8 and c < 12:
+    d = c + 1
+    e = str(d)
+    if c == 9 or c == 10:
+      f = e + 'am'
+    elif c == 11:
+      f = e + 'pm' 
+  elif c < 5:
+    d = c + 1
+    e = str(d)
+    f = e + 'pm'
+  elif c == 12:
+    d = 1
+    e = str(d)
+    f = e + 'pm'
+  g = []
+  h = app.MCLselect[0]['WorkshopTimes'][1][0]
+  g = [h, a, f]
+  app.MCLselect[0]['WorkshopTimes'][1] = g
+
+def createScreen(ev):
+  app.createMode = 'on'
+  app.MCLselect= [{'ID':'', 'Name':'', 'Overview':'', 'Year':'', 'Trimester':'', 'LectureTimes':['','',''], 'WorkshopTimes':[['','',''],['','','']]}]
+  a = app.courses[-1]['ID']
+  b = int(a)
+  ID = b + 1
+  app.MCLselect[0]['ID'] = ID
+  app.screen = 3
+
+def deletePop(ev):
+  if len(app.MCLselect) == 1:
+    app.pop = 13
+  else:
+    app.pop = 14
+
+
+############### Filters and searches ##########################################
+
+def closePop(ev):
+  app.pop = 0
+
+def cancelEdit(ev):
+  app.createMode = 'off'
+  app.screen = 2
+
+def cancelCreate(ev):
+  app.createMode = 'off'
+  app.MCLselect = []
+  app.screen = 2
+
+##############################################################################
+
+# Notes: login function needs to set loginName and loginStatus only. Also need to code login functions
+   
+app = window.Vue.new({
+  'el': '#app',
+  'data': {
+
+### Views ###
+    'screen':0,
+    'pop': 0,
+
+### JSON urls ###
+    'username' : 'newclai',
+    'getCourses' : 'https://caab.sim.vuw.ac.nz/api/newclai/course_directory.json',
+    'postCourses' : 'https://caab.sim.vuw.ac.nz/api/newclai/update.course_directory.json',
+    'deleteCourses' : 'https://caab.sim.vuw.ac.nz/api/newclai/delete.course.{courseId}.json',
+    'getUsers' : 'https://caab.sim.vuw.ac.nz/api/newclai/user_list.json',
+    'getAssoc' : 'https://caab.sim.vuw.ac.nz/api/newclai/course_association_directory.json',
+    'postAssoc' : 'https://caab.sim.vuw.ac.nz/api/newclai/update.course_association_directory.json',
+    'deleteAssoc' : 'https://caab.sim.vuw.ac.nz/api/newclai/delete.course_association.{courseAssociationId}.json',
+
+### Reference dictionaries ###
+    'courses':{},  
+    'users':{},
+    'enrolments':{},
+    'courseYear':[],
+    'courseTrimester':[],
+    'lecturerList':[],
+    
+### User variables ###
+    'loginStatus':'False', #'False'
+    'loginName':'', #''
+    'password':'',
+    'userType':'', #''
+    'userID':'', #''
+    'myCourseList':[], #[]
+
+### Login variables ###
+    'loginAlert': '',
+    
+### Week overview variables ###
+    'trimester': 1, #1
+    'overviewDict': {
+      '1': {
+        'Mon':{'9am':'', '10am':'', '11am':'', '12pm':'', '1pm':'', '2pm':'', '3pm':'', '4pm':''},
+        'Tue':{'9am':'', '10am':'', '11am':'', '12pm':'', '1pm':'', '2pm':'', '3pm':'', '4pm':''},
+        'Wed':{'9am':'', '10am':'', '11am':'', '12pm':'', '1pm':'', '2pm':'', '3pm':'', '4pm':''},
+        'Thu':{'9am':'', '10am':'', '11am':'', '12pm':'', '1pm':'', '2pm':'', '3pm':'', '4pm':''},
+        'Fri':{'9am':'', '10am':'', '11am':'', '12pm':'', '1pm':'', '2pm':'', '3pm':'', '4pm':''}
+      },
+      '2':{
+        'Mon':{'9am':'', '10am':'', '11am':'', '12pm':'', '1pm':'', '2pm':'', '3pm':'', '4pm':''},
+        'Tue':{'9am':'', '10am':'', '11am':'', '12pm':'', '1pm':'', '2pm':'', '3pm':'', '4pm':''},
+        'Wed':{'9am':'', '10am':'', '11am':'', '12pm':'', '1pm':'', '2pm':'', '3pm':'', '4pm':''},
+        'Thu':{'9am':'', '10am':'', '11am':'', '12pm':'', '1pm':'', '2pm':'', '3pm':'', '4pm':''},
+        'Fri':{'9am':'', '10am':'', '11am':'', '12pm':'', '1pm':'', '2pm':'', '3pm':'', '4pm':''}
+      },
+      '3':{
+        'Mon':{'9am':'', '10am':'', '11am':'', '12pm':'', '1pm':'', '2pm':'', '3pm':'', '4pm':''},
+        'Tue':{'9am':'', '10am':'', '11am':'', '12pm':'', '1pm':'', '2pm':'', '3pm':'', '4pm':''},
+        'Wed':{'9am':'', '10am':'', '11am':'', '12pm':'', '1pm':'', '2pm':'', '3pm':'', '4pm':''},
+        'Thu':{'9am':'', '10am':'', '11am':'', '12pm':'', '1pm':'', '2pm':'', '3pm':'', '4pm':''},
+        'Fri':{'9am':'', '10am':'', '11am':'', '12pm':'', '1pm':'', '2pm':'', '3pm':'', '4pm':''}
+      }
+    },
+    'clashAlert': '',
+
+### Filter and search variables ###
+    'filterYear' : '', #'' = start value. Source: User (screen0)
+    'filterTrimester' : '', #'' = start value. Source: User (screen0)
+    'filterLecturer' : '', #'' = start value. Source: User (screen0)
+    'filteredCourses': [], #[] = start value. Result: Courses dropdown (screen0). Source: enter(), filter(), filterReset().
+    'search': '', #'' = start value. Source: User input (screen0)
+    'searchResults': '', #'' = start value. Invalid course ID error msg. Source: searchCourses()
+
+### Selected Course variables
+    'selectedCourse': {}, #{} = start value. Search result or course dropdown. Source: User input (screen0)
+    'selectedLecturer': '', #''
+    'selectedDescription': 'hide', #'hide' = start value. Source: selectedCourse
+
+### MCL variables ###
+    'MCLselect':[],
+    'MCLselectedDescription': 'hide', #'hide'
+    'MCLSelectLecturer': '', #''
+
+### Edit/Create course variables ###
+    'createMode': 'off', #'off'
+    'incompleteForm':'',
+    
+  },
+  'methods': {
+    'loads2': loads2,
+    'dumps2': dumps2,
+    'pythonGet': pythonGet,
+    'pythonDel': pythonDel,
+    'pythonPost': pythonPost,
+
+### Get data functions ###
+    'login': login,
+    'logout': logout,
+    'enter': enter, # Initial load of reference dictionaries
+    'getCourseLists': getCourseLists, # Reuseable retrieve reference dictionary
+    'getUserLists': getUserLists, # Reuseable retrieve reference dictionary
+    'getCourseAssocs': getCourseAssocs, # Reuseable retrieve reference dictionary
+    'filterUnique': filterUnique, # Reuseable retrieve reference dictionary
+    'getUserDetails': getUserDetails, # Reuseable retrieve user lists
+    'getLecMCL': getLecMCL,
+
+
+### Nav functions ###
+    'navCourses': navCourses,
+    'navDirectory': navDirectory,
+
+### Overview functions ###
+    'showCourseDetails': showCourseDetails,
+    'selectedCourseOverview': selectedCourseOverview,
+
+### Directory functions ###
+    'filter': filter,
+    'filterReset': filterReset,
+    'searchBlur': searchBlur,
+    'searchCourses': searchCourses,
+    'selectCourse': selectCourse,
+    'addCourse': addCourse,
+
+### Courses functions ###
+    'postCourseUpdate': postCourseUpdate,
+    'MCLselected': MCLselected,
+    'editScreen': editScreen,
+    'endLec': endLec,
+    'endW1': endW1,
+    'endW2': endW2,
+    'updateCourse': updateCourse,
+    'createScreen': createScreen,
+    'deletePop': deletePop,
+    'deleteCourse': deleteCourse,
+    'postCourseAssoc': postCourseAssoc,
+    'cancelEdit': cancelEdit,
+    'cancelCreate': cancelCreate,
+    'confirmCourseUpdates': confirmCourseUpdates,
+
+### Notification Functions ###
+    'closePop': closePop,
+
+  }
+})
+
+
+
+
+  </script>
+  </body>
+</html>
